@@ -21,8 +21,8 @@ private:
 	double depth;
 	char* Dop_Info = nullptr;
 	char* Tip = nullptr;
-	double area;
-	double volume;
+	long double area;
+	long double volume;
 
 public:
 
@@ -41,12 +41,19 @@ public:
 
 	//void AddReservoir();
 
-	//расчет площади воды S = a * b, где S — площадь; a - длина и b - ширина.
-	double SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int* check);
+	//ручной расчет площади по кадастровому номеру воды S = a * b, где S — площадь; a - длина и b - ширина.
+	//используется вручную, после изменения данных по единичной позиции
+	long double SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int* check);
+
+	//автоматический расчет площади (если база большая может занять время)
+	void AutoSearchArea(Reservoir* vodoem, const int countreservoir);
 
 	//расчет объема воды (Q = width * length * depth, где Q — объем; width * length * depth — ширина, длина и глубина)
 	void SearchVolume(Reservoir* vodoem);
 
+	
+	void SearchAreaTip(Reservoir* vodoem, char const* charsearch, int const countreservoir);
+	
 	//вывод водоемов на экран
 	void Show_Reservoir();
 
@@ -66,8 +73,8 @@ public:
 	double Getdepth();
 	char GetDop_Info();
 	char GetTip();
-	double Getarea();
-	double Getvolume();
+	long double Getarea();
+	long double Getvolume();
 
 	//сеттеры
 	void Setid(int _id);
@@ -78,8 +85,8 @@ public:
 	void Setdepth(double _depth);
 	void SetDop_Info(char* _Dop_Info);
 	void SetTip(char* _Tip);
-	void Setarea(double _area);
-	void Setvolume(double _volume);
+	void Setarea(long double _area);
+	void Setvolume(long double _volume);
 
 };
 

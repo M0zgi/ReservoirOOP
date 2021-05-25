@@ -219,11 +219,11 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 	cout << "Нажми любую кнопку для возврата к меню.";
 }
 
-double Reservoir::SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int *check)
+long double Reservoir::SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int *check)
 {
 	int searchidarray = 0;	
 	int count = 0;
-	double area = 0;	
+	long double area = 0;
 
 	for (size_t i = 0; i < countreservoir; i++)
 	{
@@ -247,8 +247,57 @@ double Reservoir::SearchArea(Reservoir* vodoem, const int countreservoir, int _c
 
 }
 
+void Reservoir::AutoSearchArea(Reservoir* vodoem, const int countreservoir)
+{
+	long double area = 0;
+	for (size_t i = 0; i < countreservoir; i++)
+	{
+		area = vodoem[i].Getwidth() * vodoem[i].Getlength();
+		vodoem[i].Setarea(area);
+	}
+}
+
 void Reservoir::SearchVolume(Reservoir* vodoem)
 {
+}
+
+void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int const countreservoir)
+{
+	int countsearch = 0;
+
+	for (size_t i = 0; i < countreservoir; i++)
+	{
+		char* temp = strstr(vodoem[i].Tip, charsearch);
+
+		if (temp)
+		{
+			countsearch++;
+
+			if (countsearch == 1)
+			{
+				gotoxy(0, 13);
+				cout << "+-------+---------------------------+-----------------+-------------+\n";
+				gotoxy(0, 14);
+				cout << "|Код    | Наименование              | Тип             | Площадь, км |\n";
+				gotoxy(0, 15);
+				cout << "+-------+---------------------------+-----------------+-------------+\n";
+			}
+
+			cout << left << "| " << setw(5) << vodoem[i].code << " | " << setw(26);
+			vodoem[i].Show_One_Reservoir();
+
+			cout << left << "| " << setw(15) << vodoem[i].Tip << " | " << setw(11) << vodoem[i].area << " | " << endl;
+		}
+		
+	}
+
+	cout << "+-------+---------------------------+-----------------+-------------+\n";
+
+	if (countsearch < 1)
+	{
+		cout << "Водоемов по запросу не найдено" << endl;
+		cout << "Нажми любую кнопку для возврата к меню.";
+	}
 }
 
 void Reservoir::Show_Reservoir()
@@ -309,12 +358,12 @@ char Reservoir::GetTip()
 	return *Tip;
 }
 
-double Reservoir::Getarea()
+long double Reservoir::Getarea()
 {
 	return area;
 }
 
-double Reservoir::Getvolume()
+long double Reservoir::Getvolume()
 {
 	return volume;
 }
@@ -359,12 +408,12 @@ void Reservoir::SetTip(char* _Tip)
 	Tip = _Tip;
 }
 
-void Reservoir::Setarea(double _area)
+void Reservoir::Setarea(long double _area)
 {
 	area = _area;
 }
 
-void Reservoir::Setvolume(double _volume)
+void Reservoir::Setvolume(long double _volume)
 {
 	volume = _volume;
 }
