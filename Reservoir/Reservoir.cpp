@@ -59,9 +59,7 @@ void Reservoir::DeleteReservoir()
 void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_number)
 {
 	Reservoir* temp = new Reservoir[*countreservoir + 1];
-
 	char _name, _tip, _info;
-
 	int numbertmp = *_number;
 
 	for (size_t i = 0; i < *countreservoir; i++)
@@ -71,7 +69,6 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 		temp[i].width = vodoem[i].width;
 		temp[i].length = vodoem[i].length;
 		temp[i].depth = vodoem[i].depth;
-
 
 		_name = strlen(vodoem[i].Reservoir_Name);
 		_tip = strlen(vodoem[i].Tip);
@@ -98,34 +95,27 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 	cin.getline(buff, 250);
 	_name = strlen(buff);
 	temp[*countreservoir].Reservoir_Name = new char[_name + 1];
-	strcpy(temp[*countreservoir].Reservoir_Name, buff);
-	
+	strcpy(temp[*countreservoir].Reservoir_Name, buff);	
 	
 	cout << "Введите Ширину(км) водоема: ";
-	cin >> temp[*countreservoir].width;
-	
+	cin >> temp[*countreservoir].width;	
 	cin.ignore();
 
 	cout << "Введите Длину(км) водоема: ";
-	cin >> temp[*countreservoir].length;
-	
+	cin >> temp[*countreservoir].length;	
 	cin.ignore();
 
 	cout << "Введите Глубину(м) водоема: ";
-	cin >> temp[*countreservoir].depth;
-	
+	cin >> temp[*countreservoir].depth;	
 	cin.ignore();
 
-	cout << "Введите Тип водоема: ";
-	
+	cout << "Введите Тип водоема: ";	
 	cin.getline(buff, 250);
 	_tip = strlen(buff);
 	temp[*countreservoir].Tip = new char[_tip + 1];
-	strcpy(temp[*countreservoir].Tip, buff);
-	
+	strcpy(temp[*countreservoir].Tip, buff);	
 
-	cout << "Введите Дополнительную информацию: ";
-	
+	cout << "Введите Дополнительную информацию: ";	
 	cin.getline(buff, 250);
 	_info = strlen(buff);
 	temp[*countreservoir].Dop_Info = new char[_info + 1];
@@ -141,7 +131,6 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 
 	cout << "Изменения внесены...\n";
 	cout << "Нажми любую кнопку для возврата к меню.";
-
 }
 
 void Reservoir::Show_Reservoir()
