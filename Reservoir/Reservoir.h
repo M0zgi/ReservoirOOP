@@ -51,14 +51,14 @@ public:
 	//расчет объема воды (Q = width * length * depth, где Q Ч объем; width * length * depth Ч ширина, длина и глубина)
 	void SearchVolume(Reservoir* vodoem);
 
-	
+	//поиск дл€ сравнени€ площади водоемов одного типа (поиск учитывает регистр)
+	//если ввести одну букву "р" то в результат попадут все типы, где есть эта буква
 	void SearchAreaTip(Reservoir* vodoem, char const* charsearch, int const countreservoir);
 	
 	//вывод водоемов на экран
 	void Show_Reservoir();
 
 	//вывод одного водоема на экран
-
 	void Show_One_Reservoir();
 
 	~ Reservoir();
