@@ -87,12 +87,23 @@ void MenuFun2()
 	cname->Show_Country();
 	cout << endl;
 	gotoxy(0, 6);
-	cout << "1. Добавление Водоема"<< endl;
-	gotoxy(0, 7);
-	cout << "2. Удаление Водоема" << endl << endl;
-	
 
-	vodoem->AddReservoir(vodoem, &countreservoir, &number);
+	int choose;
+	cout << "1. Добавление Водоема"<< endl;	
+	cout << "2. Удаление Водоема" << endl;	
+	cout << "3. Выход" << endl;	
+	cout << "Введите номер меню: ";
+	cin >> choose;
+	cout << endl << endl;
+	if (choose == 1)
+		vodoem->AddReservoir(vodoem, &countreservoir, &number);
+	
+	if (choose == 2)
+		vodoem->DeleteReservoir(vodoem, &countreservoir, &number);	
+
+	if (choose > 2)
+    cout << "Выход..." << endl;
+	
 
 	_getch();
 	system("cls");
@@ -111,9 +122,25 @@ void MenuFun3()
 void MenuFun4()
 {
 	system("cls");
-	gotoxy(25, 9);
-	cout << "Определения площади водной поверхности\n";
+	int _code;
+	int idarray = NULL;
+	int check = 0;
 
+	gotoxy(0, 9);
+	cout << "Определения площади водной поверхности\n";
+	cout << "Введите кадастровый номер водоема: ";
+	cin >> _code;
+	vodoem->SearchArea(vodoem, countreservoir, _code, &idarray, &check);
+
+	if (check)
+	{
+		cout << "Площадь водоема ";
+		vodoem[idarray].Show_One_Reservoir();
+		cout << " = " << vodoem[idarray].Getarea() << " км.";
+	}
+
+	else
+		cout << "По запросу ничего не найдено...";
 
 	_getch();
 	system("cls");

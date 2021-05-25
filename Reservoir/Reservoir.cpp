@@ -3,13 +3,15 @@
 Reservoir::Reservoir()
 {
 	id = 0;
-	kod = 0;
+	code = 0;
 	Reservoir_Name = new char[10]{ "Без имени" };	
 	width = 0;
 	length = 0;
 	depth = 0;
 	Tip = new char[2]{ "-" };
 	Dop_Info = new char[2]{ "-" };
+	area = 0;
+	volume = 0;
 }
 
 //Reservoir::Reservoir(Reservoir*& vodoem, int* countreservoir, int* _number)
@@ -17,10 +19,10 @@ Reservoir::Reservoir()
 //
 //}
 
-Reservoir::Reservoir(int _id, int _kod, const char* _name, double _width, double _length, double _depth, const char* _tip, const char* _info)
+Reservoir::Reservoir(int _id, int _code, const char* _name, double _width, double _length, double _depth, const char* _tip, const char* _info)
 {
 	id = _id;
-	kod = _kod;
+	code = _code;
 	width = _width;
 	length = _length;
 	depth = _depth;
@@ -43,21 +45,104 @@ Reservoir::Reservoir(int _id, int _kod, const char* _name, double _width, double
 Reservoir::Reservoir(const Reservoir& obj)
 {
 	id = obj.id;
-	kod = obj.kod;
+	code = obj.code;
 	Reservoir_Name = obj.Reservoir_Name;
 	width = obj.width;
 	length = obj.length;
 	depth = obj.depth;
 	Dop_Info = obj.Dop_Info;
 	Tip = obj.Tip;
+	area = obj.area;
+	volume = obj.volume;
 }
 
-void Reservoir::DeleteReservoir()
+void Reservoir::DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _number)
 {
+	system("cls");
+	gotoxy(0, 6);
+	cout << "Удаление Водоема" << endl;
+	
+	char _name, _tip, _info;
+	int numbertmp = *_number;
+
+	int p_count = 0;
+
+	//кадастровый номер для удаления
+	int delnumber;
+
+	//счетчик был ли удален абонент
+	int countdel = 0;
+
+	cout << "Введите кадастровый номер водоема для удаления: ";
+	cin >> delnumber;
+	cin.ignore();
+
+	for (size_t i = 0; i < *countreservoir; i++)
+	{
+		if (vodoem[i].code == delnumber)
+		{
+			(*countreservoir)--;
+			countdel++;
+		}
+	}
+
+	Reservoir* temp = new Reservoir[*countreservoir];
+
+	for (size_t i = 0; i < *countreservoir; i++)
+	{
+		if (vodoem[p_count].code == delnumber)
+		{
+			p_count++;
+			i--;
+		}
+
+		else if (vodoem[p_count].code != delnumber)
+		{
+			temp[i].id = vodoem[p_count].id;
+			temp[i].code = vodoem[p_count].code;
+			temp[i].width = vodoem[p_count].width;
+			temp[i].length = vodoem[p_count].length;
+			temp[i].depth = vodoem[p_count].depth;
+			temp[i].area = vodoem[p_count].area;
+			temp[i].volume = vodoem[p_count].volume;
+
+			_name = strlen(vodoem[p_count].Reservoir_Name);
+			_tip = strlen(vodoem[p_count].Tip);
+			_info = strlen(vodoem[p_count].Dop_Info);
+
+			temp[i].Reservoir_Name = new char[_name + 1];
+			temp[i].Tip = new char[_tip + 1];
+			temp[i].Dop_Info = new char[_info + 1];
+
+			strcpy(temp[i].Reservoir_Name, vodoem[p_count].Reservoir_Name);
+			strcpy(temp[i].Tip, vodoem[p_count].Tip);
+			strcpy(temp[i].Dop_Info, vodoem[p_count].Dop_Info);
+
+			p_count++;
+		}
+	}
+
+	if (countdel)
+	{
+		cout << "Изменения внесены...\n";
+	}
+
+	delete[]vodoem;
+	vodoem = temp;
+
+	if (!countdel)
+	{
+		cout << "Кадастровый номер не найден.\n";
+		cout << "Нажми любую кнопку для возврата к меню.";
+	}
 }
 
 void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_number)
-{
+{	
+	system("cls");
+	gotoxy(0, 6);
+	cout << "Добавление Водоема" << endl;
+
 	Reservoir* temp = new Reservoir[*countreservoir + 1];
 	char _name, _tip, _info;
 	int numbertmp = *_number;
@@ -65,10 +150,12 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 	for (size_t i = 0; i < *countreservoir; i++)
 	{
 		temp[i].id = vodoem[i].id;
-		temp[i].kod = vodoem[i].kod;
+		temp[i].code = vodoem[i].code;
 		temp[i].width = vodoem[i].width;
 		temp[i].length = vodoem[i].length;
 		temp[i].depth = vodoem[i].depth;
+		temp[i].area = vodoem[i].area;
+		temp[i].volume = vodoem[i].volume;
 
 		_name = strlen(vodoem[i].Reservoir_Name);
 		_tip = strlen(vodoem[i].Tip);
@@ -83,11 +170,10 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 		strcpy(temp[i].Dop_Info, vodoem[i].Dop_Info);
 	}
 
-
 	temp[*countreservoir].id = numbertmp;
 
 	cout << "Введите кадастровый код водоема: ";
-	cin >> temp[*countreservoir].kod;
+	cin >> temp[*countreservoir].code;
 	cin.ignore();
 
 	cout << "Введите Наименование водоема: ";
@@ -133,10 +219,47 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 	cout << "Нажми любую кнопку для возврата к меню.";
 }
 
+double Reservoir::SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int *check)
+{
+	int searchidarray = 0;	
+	int count = 0;
+	double area = 0;	
+
+	for (size_t i = 0; i < countreservoir; i++)
+	{
+		if (vodoem[i].code == _code)
+		{
+			searchidarray = count;
+			*_idarray = count;
+			(*check)++;
+		}			
+		count++;
+	}
+	cout << endl;
+
+	if (check++)
+	{
+		area = vodoem[searchidarray].Getwidth() * vodoem[searchidarray].Getlength();
+		vodoem[searchidarray].Setarea(area);
+	}
+
+	return area;
+
+}
+
+void Reservoir::SearchVolume(Reservoir* vodoem)
+{
+}
+
 void Reservoir::Show_Reservoir()
 {
-	cout << left << "| " << setw(5) << kod << " | " << setw(26) << Reservoir_Name << " | " << setw(10) << width << " | " << setw(9) <<  length << " | " << setw(10) << depth << " | " << setw(15) << Tip << " | " << setw(47) << Dop_Info << " | " << endl;
+	cout << left << "| " << setw(5) << code << " | " << setw(26) << Reservoir_Name << " | " << setw(10) << width << " | " << setw(9) <<  length << " | " << setw(10) << depth << " | " << setw(15) << Tip << " | " << setw(47) << Dop_Info << " | " << endl;
 
+}
+
+void Reservoir::Show_One_Reservoir()
+{
+	cout << Reservoir_Name;
 }
 
 Reservoir::~Reservoir()
@@ -151,9 +274,9 @@ int Reservoir::Getid()
 	return id;
 }
 
-int Reservoir::Getkod()
+int Reservoir::Getcode()
 {
-	return kod;
+	return code;
 }
 
 char Reservoir::GetReservoir_Name()
@@ -184,6 +307,66 @@ char Reservoir::GetDop_Info()
 char Reservoir::GetTip()
 {
 	return *Tip;
+}
+
+double Reservoir::Getarea()
+{
+	return area;
+}
+
+double Reservoir::Getvolume()
+{
+	return volume;
+}
+
+void Reservoir::Setid(int _id)
+{
+	id = _id;
+}
+
+void Reservoir::Setcode(int _code)
+{
+	code = _code;
+}
+
+void Reservoir::SetReservoir_Name(char* _Reservoir_Name)
+{
+	Reservoir_Name = _Reservoir_Name;
+}
+
+void Reservoir::Setwidth(double _width)
+{
+	width = _width;
+}
+
+void Reservoir::Setlength(double _length)
+{
+	length = _length;
+}
+
+void Reservoir::Setdepth(double _depth)
+{
+	depth = _depth;
+}
+
+void Reservoir::SetDop_Info(char* _Dop_Info)
+{
+	Dop_Info = _Dop_Info;
+}
+
+void Reservoir::SetTip(char* _Tip)
+{
+	Tip = _Tip;
+}
+
+void Reservoir::Setarea(double _area)
+{
+	area = _area;
+}
+
+void Reservoir::Setvolume(double _volume)
+{
+	volume = _volume;
 }
 
 Country::Country()
