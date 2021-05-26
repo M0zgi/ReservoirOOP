@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 class Reservoir
 {
 private:
@@ -30,16 +29,12 @@ public:
 	//Reservoir(Reservoir*& vodoem, int* countreservoir, int* _number);
 	Reservoir(int _id, int _code, const char* _name, double _width, double _length, double _depth, const char* _tip, const char* _info);
 
-
 	//конструктор копирования
 	Reservoir(const Reservoir& obj);
-
 
 	void DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _number);
 
 	void AddReservoir(Reservoir*& vodoem, int* countreservoir, int* _number);
-
-	//void AddReservoir();
 
 	//ручной расчет площади по кадастровому номеру воды S = a * b, где S — площадь; a - длина и b - ширина.
 	//используется вручную, после изменения данных по единичной позиции
@@ -106,7 +101,6 @@ private:
 	char* Country_Name = nullptr;
 	Reservoir *Name = nullptr;
 
-
 public:
 
 	Country();
@@ -117,9 +111,6 @@ public:
 	void Show_Country();
 
 	~Country();
-
-
-
 };
 
 //-----------------------------------------------------------------------------------------------

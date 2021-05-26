@@ -34,7 +34,6 @@ Reservoir::Reservoir(int _id, int _code, const char* _name, double _width, doubl
 	strcpy(Reservoir_Name, _name);
 	strcpy(Dop_Info, _info);
 	strcpy(Tip, _tip);
-
 }
 
 Reservoir::Reservoir(const Reservoir& obj)
@@ -238,7 +237,6 @@ long double Reservoir::SearchVolume(Reservoir* vodoem, const int countreservoir,
 		vodoem[searchidarray].Setvolume(volume);
 	}
 
-
 	return volume;
 }
 
@@ -267,7 +265,6 @@ long double Reservoir::SearchArea(Reservoir* vodoem, const int countreservoir, i
 	}
 
 	return area;
-
 }
 
 void Reservoir::AutoSearchArea(Reservoir* vodoem, const int countreservoir)
@@ -321,7 +318,20 @@ void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int con
 
 bool Reservoir::CheckTip(Reservoir* vodoem, int const countreservoir, int _code1, int _code2, int* _idarray1, int* _idarray2)
 {
-	return true;
+	for (size_t i = 0; i < countreservoir; i++)
+	{
+		if (vodoem[i].code == _code1)
+			*_idarray1 = i;
+
+		if (vodoem[i].code == _code2)
+			*_idarray2 = i;
+	}
+	
+	if (!strcmp(vodoem[*_idarray1].Tip, vodoem[*_idarray2].Tip))
+		return true;		
+
+	else
+		return false;		
 }
 
 void Reservoir::Show_Tip()

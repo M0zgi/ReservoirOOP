@@ -1,7 +1,6 @@
 ﻿#include"Reservoir.h"
 
 
-
 //счетчки количества водоемов в массиве
 int countreservoir = 4;
 
@@ -20,11 +19,9 @@ Reservoir* vodoem = new Reservoir[countreservoir]
 	{number++, 4478, "Черное море", 100, 310, 25, "море", "Херсонская, Николаевская и Ожесская области"}
 };
 
-
 Country* cname = new Country[countrountry]
 {
-	{countrountry++, "Украина"},
-	
+	{countrountry++, "Украина"},	
 };
 
  //-----------------------------------------------------------------------------------------------
@@ -58,7 +55,6 @@ void MenuFun1()
 	cout << "Список Водоемов\n\n";
 	gotoxy(17, 6);
 	cname->Show_Country();
-
 
 	gotoxy(1, 7);
 	cout << "+-------+----------------------------+------------+-----------+------------+-----------------+-------------------------------------------------+\n";
@@ -103,8 +99,7 @@ void MenuFun2()
 		vodoem->DeleteReservoir(vodoem, &countreservoir, &number);	
 
 	if (choose > 2)
-    cout << "Выход..." << endl;
-	
+    cout << "Выход..." << endl;	
 
 	_getch();
 	system("cls");
@@ -168,7 +163,7 @@ void MenuFun5()
 {
 	system("cls");
 
-	bool checktip = 1;
+	bool checktip = 0;
 	int code1;
 	int code2;
 	int idarray1 = NULL;
@@ -247,16 +242,14 @@ void MenuFun5()
 			cout << endl;
 			vodoem[idarray2].Show_One_Reservoir();
 			cout << " тип - ";
-			vodoem[idarray1].Show_Tip();
+			vodoem[idarray2].Show_Tip();
 		}
 	}
 
 	else
 	{
 		cout << "Введите коректные данные и повторите ваш запрос...\n";
-	}
-
-	
+	}	
 
 	_getch();
 	system("cls");
