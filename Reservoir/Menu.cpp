@@ -16,8 +16,8 @@ Reservoir* vodoem = new Reservoir[countreservoir]
 {
 	{number++, 2201, "Голубое озеро", 0.72, 0.45, 50, "озеро", "Бугский Гард. Село Мигия. Николаевская область"},
 	{number++, 3301, "Днепровское водохранилище", 3.5, 170, 8, "водохранилище","Запорожская и Днепропетровская области"},
-	{number++, 4421, "Азовское море", 200, 380, 7.4, "море", "Херсонская, Запорожская и Донецкая области"},
-	{number++, 4478, "Черное море", 100, 510, 25, "море", "Херсонская, Николаевская и Ожесская области"}
+	{number++, 4421, "Азовское море", 20, 180, 7.4, "море", "Херсонская, Запорожская и Донецкая области"},
+	{number++, 4478, "Черное море", 100, 310, 25, "море", "Херсонская, Николаевская и Ожесская области"}
 };
 
 
@@ -113,9 +113,26 @@ void MenuFun2()
 void MenuFun3()
 {
 	system("cls");
-	gotoxy(25, 9);
+	int _code;
+	int idarray = NULL;
+	int check = 0;
+
+	gotoxy(0, 9);
 	cout << "Расчет объема водоема\n";
-	
+	cout << "Введите кадастровый номер водоема: ";
+	cin >> _code;
+	vodoem->SearchVolume(vodoem, countreservoir, _code, &idarray, &check);
+
+	if (check)
+	{
+		cout << "Объем водоема ";
+		vodoem[idarray].Show_One_Reservoir();
+		cout << " = " << vodoem[idarray].Getvolume() << " км.";
+	}
+
+	else
+		cout << "По запросу ничего не найдено...";
+
 	_getch();
 	system("cls");
 }
@@ -150,9 +167,96 @@ void MenuFun4()
 void MenuFun5()
 {
 	system("cls");
-	gotoxy(25, 9);
-	cout << "Проверка типа водоема\n";
 
+	bool checktip = 1;
+	int code1;
+	int code2;
+	int idarray1 = NULL;
+	int idarray2 = NULL;
+	int checkcode1 = 0;
+	int checkcode2 = 0;
+
+	gotoxy(0, 9);
+	cout << "Проверка относятся ли водоемы к одному типу\n";
+	cout << "Введите кадастровый номер первого водоема: ";
+	cin >> code1;
+	cout << "Введите кадастровый номер второго водоема: ";
+	cin >> code2;
+
+	//делаем проверку на наличие водоемов в базе данных
+	
+	for (size_t k = 0; k < countreservoir; k++)
+	{
+		if (vodoem[k].Getcode() == code1)
+		{
+				checkcode1++;
+		}
+	}
+	
+	if (checkcode1)
+	{
+		cout << "Первый водоем найден в базе\n";
+	}
+
+	else
+	{
+		cout << "Первый водоем не найден в базе\n";
+	}
+
+	for (size_t k = 0; k < countreservoir; k++)
+	{
+		if (vodoem[k].Getcode() == code2)
+		{
+			checkcode2++;
+		}
+	}
+
+	if (checkcode2)
+	{
+		cout << "Второй водоем найден в базе\n";
+	}
+
+	else
+	{
+		cout << "Второй водоем не найден в базе\n";
+	}
+
+	if (checkcode1 && checkcode2)
+	{
+		cout << "Оба водоема были найдены в базе\n";
+		cout << "Начинаем сравнение типов водоемов\n\n";
+
+		checktip = vodoem->CheckTip(vodoem, countreservoir, code1, code2, &idarray1, &idarray2);
+
+		if (checktip)
+		{
+			cout << "Водоемы ";
+			vodoem[idarray1].Show_One_Reservoir();
+			cout << " и ";
+			vodoem[idarray2].Show_One_Reservoir();
+			cout << " имеют общий тип - ";
+			vodoem[idarray1].Show_Tip();
+		}
+
+		else
+		{
+			cout << "Водоемы имеют разный тип\n";
+			vodoem[idarray1].Show_One_Reservoir();
+			cout << " тип - ";
+			vodoem[idarray1].Show_Tip();
+			cout << endl;
+			vodoem[idarray2].Show_One_Reservoir();
+			cout << " тип - ";
+			vodoem[idarray1].Show_Tip();
+		}
+	}
+
+	else
+	{
+		cout << "Введите коректные данные и повторите ваш запрос...\n";
+	}
+
+	
 
 	_getch();
 	system("cls");

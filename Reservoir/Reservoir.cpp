@@ -14,11 +14,6 @@ Reservoir::Reservoir()
 	volume = 0;
 }
 
-//Reservoir::Reservoir(Reservoir*& vodoem, int* countreservoir, int* _number)
-//{
-//
-//}
-
 Reservoir::Reservoir(int _id, int _code, const char* _name, double _width, double _length, double _depth, const char* _tip, const char* _info)
 {
 	id = _id;
@@ -219,6 +214,34 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 	cout << "Нажми любую кнопку для возврата к меню.";
 }
 
+long double Reservoir::SearchVolume(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int* check)
+{
+	int searchidarray = 0;
+	int count = 0;
+	long double volume = 0;
+
+	for (size_t i = 0; i < countreservoir; i++)
+	{
+		if (vodoem[i].code == _code)
+		{
+			searchidarray = count;
+			*_idarray = count;
+			(*check)++;
+		}
+		count++;
+	}
+	cout << endl;
+
+	if (check++)
+	{
+		volume = vodoem[searchidarray].Getwidth() * vodoem[searchidarray].Getlength() * (vodoem[searchidarray].Getdepth() / 100);
+		vodoem[searchidarray].Setvolume(volume);
+	}
+
+
+	return volume;
+}
+
 long double Reservoir::SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int *check)
 {
 	int searchidarray = 0;	
@@ -255,10 +278,6 @@ void Reservoir::AutoSearchArea(Reservoir* vodoem, const int countreservoir)
 		area = vodoem[i].Getwidth() * vodoem[i].Getlength();
 		vodoem[i].Setarea(area);
 	}
-}
-
-void Reservoir::SearchVolume(Reservoir* vodoem)
-{
 }
 
 void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int const countreservoir)
@@ -298,6 +317,16 @@ void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int con
 		cout << "Водоемов по запросу не найдено" << endl;
 		cout << "Нажми любую кнопку для возврата к меню.";
 	}
+}
+
+bool Reservoir::CheckTip(Reservoir* vodoem, int const countreservoir, int _code1, int _code2, int* _idarray1, int* _idarray2)
+{
+	return true;
+}
+
+void Reservoir::Show_Tip()
+{
+	cout << Tip;
 }
 
 void Reservoir::Show_Reservoir()
