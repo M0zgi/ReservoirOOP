@@ -122,7 +122,7 @@ void MenuFun3()
 	{
 		cout << "Объем водоема ";
 		vodoem[idarray].Show_One_Reservoir();
-		cout << " = " << vodoem[idarray].Getvolume() << " км.";
+		cout << " = " << vodoem[idarray].Getvolume() << " км3";
 	}
 
 	else

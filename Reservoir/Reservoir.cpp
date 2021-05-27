@@ -233,7 +233,7 @@ long double Reservoir::SearchVolume(Reservoir* vodoem, const int countreservoir,
 
 	if (check++)
 	{
-		volume = vodoem[searchidarray].Getwidth() * vodoem[searchidarray].Getlength() * (vodoem[searchidarray].Getdepth() / 100);
+		volume = vodoem[searchidarray].Getwidth() * vodoem[searchidarray].Getlength() * (vodoem[searchidarray].Getdepth() / 1000);
 		vodoem[searchidarray].Setvolume(volume);
 	}
 
