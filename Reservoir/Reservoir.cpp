@@ -21,15 +21,10 @@ Reservoir::Reservoir(int _id, int _code, const char* _name, double _width, doubl
 	width = _width;
 	length = _length;
 	depth = _depth;
-	
-	int count_name, count_info, count_tip;
-	count_name = strlen(_name);
-	count_tip = strlen(_tip);
-	count_info = strlen(_info);
 
-	Reservoir_Name = new char[count_name + 1];
-	Dop_Info = new char[count_info + 1];
-	Tip = new char[count_tip + 1];
+	Reservoir_Name = new char[strlen(_name) + 1];
+	Dop_Info = new char[strlen(_info) + 1];
+	Tip = new char[strlen(_tip) + 1];
 	
 	strcpy(Reservoir_Name, _name);
 	strcpy(Dop_Info, _info);
@@ -40,12 +35,20 @@ Reservoir::Reservoir(const Reservoir& obj)
 {
 	id = obj.id;
 	code = obj.code;
-	Reservoir_Name = obj.Reservoir_Name;
+
+	Reservoir_Name = new char[strlen(obj.Reservoir_Name + 1)];
+	strcpy(Reservoir_Name, obj.Reservoir_Name);
+
 	width = obj.width;
 	length = obj.length;
 	depth = obj.depth;
-	Dop_Info = obj.Dop_Info;
-	Tip = obj.Tip;
+
+	Dop_Info = new char[strlen(obj.Dop_Info + 1)];
+	strcpy(Dop_Info, obj.Dop_Info);
+
+	Tip = new char[strlen(obj.Tip + 1)];
+	strcpy(Tip, obj.Tip);
+
 	area = obj.area;
 	volume = obj.volume;
 }
@@ -56,7 +59,7 @@ void Reservoir::DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _n
 	gotoxy(0, 6);
 	cout << "Удаление Водоема" << endl;
 	
-	char _name, _tip, _info;
+	
 	int numbertmp = *_number;
 
 	int p_count = 0;
@@ -100,13 +103,9 @@ void Reservoir::DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _n
 			temp[i].area = vodoem[p_count].area;
 			temp[i].volume = vodoem[p_count].volume;
 
-			_name = strlen(vodoem[p_count].Reservoir_Name);
-			_tip = strlen(vodoem[p_count].Tip);
-			_info = strlen(vodoem[p_count].Dop_Info);
-
-			temp[i].Reservoir_Name = new char[_name + 1];
-			temp[i].Tip = new char[_tip + 1];
-			temp[i].Dop_Info = new char[_info + 1];
+			temp[i].Reservoir_Name = new char[strlen(vodoem[p_count].Reservoir_Name) + 1];
+			temp[i].Tip = new char[strlen(vodoem[p_count].Tip) + 1];
+			temp[i].Dop_Info = new char[strlen(vodoem[p_count].Dop_Info) + 1];
 
 			strcpy(temp[i].Reservoir_Name, vodoem[p_count].Reservoir_Name);
 			strcpy(temp[i].Tip, vodoem[p_count].Tip);
@@ -151,13 +150,9 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 		temp[i].area = vodoem[i].area;
 		temp[i].volume = vodoem[i].volume;
 
-		_name = strlen(vodoem[i].Reservoir_Name);
-		_tip = strlen(vodoem[i].Tip);
-		_info = strlen(vodoem[i].Dop_Info);
-
-		temp[i].Reservoir_Name = new char[_name + 1];
-		temp[i].Tip = new char[_tip + 1];
-		temp[i].Dop_Info = new char[_info + 1];
+		temp[i].Reservoir_Name = new char[strlen(vodoem[i].Reservoir_Name) + 1];
+		temp[i].Tip = new char[strlen(vodoem[i].Tip) + 1];
+		temp[i].Dop_Info = new char[strlen(vodoem[i].Dop_Info) + 1];
 
 		strcpy(temp[i].Reservoir_Name, vodoem[i].Reservoir_Name);
 		strcpy(temp[i].Tip, vodoem[i].Tip);
