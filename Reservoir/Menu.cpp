@@ -127,7 +127,7 @@ void MenuFun3()
 
 	else
 		cout << "По запросу ничего не найдено...";
-
+	
 	_getch();
 	system("cls");
 }
@@ -177,6 +177,7 @@ void MenuFun5()
 	cin >> code1;
 	cout << "Введите кадастровый номер второго водоема: ";
 	cin >> code2;
+	
 
 	//делаем проверку на наличие водоемов в базе данных
 	
@@ -251,6 +252,8 @@ void MenuFun5()
 		cout << "Введите коректные данные и повторите ваш запрос...\n";
 	}	
 
+	
+
 	_getch();
 	system("cls");
 }
@@ -262,7 +265,7 @@ void MenuFun6()
 	cout << "Сравнения площади водной поверхности водоемов одного типа\n";
 	vodoem->AutoSearchArea(vodoem, countreservoir);
 	cout << "Автоматическое обновление площади для всех водоемов завершено\n";
-
+	cin.ignore();
 	char charsearch[30] = "";
 	cout << "Введите Тип водоема для сравнения: ";
 	cin.getline(charsearch, 30);

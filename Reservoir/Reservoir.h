@@ -99,10 +99,10 @@ private:
 
 	int cid;
 	char* Country_Name = nullptr;
-	Reservoir *Name = nullptr;
+	Reservoir* Name = nullptr;
 
 public:
-
+	
 	Country();
 	Country(int _cid, const char* _name);
 

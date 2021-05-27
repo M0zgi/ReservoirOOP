@@ -309,10 +309,13 @@ void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int con
 		cout << "Водоемов по запросу не найдено" << endl;
 		cout << "Нажми любую кнопку для возврата к меню.";
 	}
+	
 }
 
 bool Reservoir::CheckTip(Reservoir* vodoem, int const countreservoir, int _code1, int _code2, int* _idarray1, int* _idarray2)
 {
+	
+	
 	for (size_t i = 0; i < countreservoir; i++)
 	{
 		if (vodoem[i].code == _code1)
@@ -471,8 +474,14 @@ Country::Country(int _cid, const char* _name)
 Country::Country(const Country& obj)
 {
 	cid = obj.cid;
-	Country_Name = obj.Country_Name;
-	Name = obj.Name;
+	Country_Name = new char[strlen(obj.Country_Name + 1)];
+	strcpy(Country_Name, obj.Country_Name);
+	
+	Name = obj.Name; // ? копирование под вопросом.	
+
+	/*Name = new char[strlen(obj.Name + 1)];
+	strcpy(Name, obj.Name);*/
+
 }
 
 void Country::Show_Country()
