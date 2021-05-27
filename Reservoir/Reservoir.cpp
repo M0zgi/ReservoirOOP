@@ -1,10 +1,10 @@
-#include "Reservoir.h"
+п»ї#include "Reservoir.h"
 
 Reservoir::Reservoir()
 {
 	id = 0;
 	code = 0;
-	Reservoir_Name = new char[10]{ "Без имени" };	
+	Reservoir_Name = new char[10]{ "Р‘РµР· РёРјРµРЅРё" };	
 	width = 0;
 	length = 0;
 	depth = 0;
@@ -54,20 +54,20 @@ void Reservoir::DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _n
 {
 	system("cls");
 	gotoxy(0, 6);
-	cout << "Удаление Водоема" << endl;
+	cout << "РЈРґР°Р»РµРЅРёРµ Р’РѕРґРѕРµРјР°" << endl;
 	
 	char _name, _tip, _info;
 	int numbertmp = *_number;
 
 	int p_count = 0;
 
-	//кадастровый номер для удаления
+	//РєР°РґР°СЃС‚СЂРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ
 	int delnumber;
 
-	//счетчик был ли удален абонент
+	//СЃС‡РµС‚С‡РёРє Р±С‹Р» Р»Рё СѓРґР°Р»РµРЅ Р°Р±РѕРЅРµРЅС‚
 	int countdel = 0;
 
-	cout << "Введите кадастровый номер водоема для удаления: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєР°РґР°СЃС‚СЂРѕРІС‹Р№ РЅРѕРјРµСЂ РІРѕРґРѕРµРјР° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ: ";
 	cin >> delnumber;
 	cin.ignore();
 
@@ -118,7 +118,7 @@ void Reservoir::DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _n
 
 	if (countdel)
 	{
-		cout << "Изменения внесены...\n";
+		cout << "РР·РјРµРЅРµРЅРёСЏ РІРЅРµСЃРµРЅС‹...\n";
 	}
 
 	delete[]vodoem;
@@ -126,8 +126,8 @@ void Reservoir::DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _n
 
 	if (!countdel)
 	{
-		cout << "Кадастровый номер не найден.\n";
-		cout << "Нажми любую кнопку для возврата к меню.";
+		cout << "РљР°РґР°СЃС‚СЂРѕРІС‹Р№ РЅРѕРјРµСЂ РЅРµ РЅР°Р№РґРµРЅ.\n";
+		cout << "РќР°Р¶РјРё Р»СЋР±СѓСЋ РєРЅРѕРїРєСѓ РґР»СЏ РІРѕР·РІСЂР°С‚Р° Рє РјРµРЅСЋ.";
 	}
 }
 
@@ -135,7 +135,7 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 {	
 	system("cls");
 	gotoxy(0, 6);
-	cout << "Добавление Водоема" << endl;
+	cout << "Р”РѕР±Р°РІР»РµРЅРёРµ Р’РѕРґРѕРµРјР°" << endl;
 
 	Reservoir* temp = new Reservoir[*countreservoir + 1];
 	char _name, _tip, _info;
@@ -166,36 +166,36 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 
 	temp[*countreservoir].id = numbertmp;
 
-	cout << "Введите кадастровый код водоема: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєР°РґР°СЃС‚СЂРѕРІС‹Р№ РєРѕРґ РІРѕРґРѕРµРјР°: ";
 	cin >> temp[*countreservoir].code;
 	cin.ignore();
 
-	cout << "Введите Наименование водоема: ";
+	cout << "Р’РІРµРґРёС‚Рµ РќР°РёРјРµРЅРѕРІР°РЅРёРµ РІРѕРґРѕРµРјР°: ";
 	char buff[250];
 	cin.getline(buff, 250);
 	_name = strlen(buff);
 	temp[*countreservoir].Reservoir_Name = new char[_name + 1];
 	strcpy(temp[*countreservoir].Reservoir_Name, buff);	
 	
-	cout << "Введите Ширину(км) водоема: ";
+	cout << "Р’РІРµРґРёС‚Рµ РЁРёСЂРёРЅСѓ(РєРј) РІРѕРґРѕРµРјР°: ";
 	cin >> temp[*countreservoir].width;	
 	cin.ignore();
 
-	cout << "Введите Длину(км) водоема: ";
+	cout << "Р’РІРµРґРёС‚Рµ Р”Р»РёРЅСѓ(РєРј) РІРѕРґРѕРµРјР°: ";
 	cin >> temp[*countreservoir].length;	
 	cin.ignore();
 
-	cout << "Введите Глубину(м) водоема: ";
+	cout << "Р’РІРµРґРёС‚Рµ Р“Р»СѓР±РёРЅСѓ(Рј) РІРѕРґРѕРµРјР°: ";
 	cin >> temp[*countreservoir].depth;	
 	cin.ignore();
 
-	cout << "Введите Тип водоема: ";	
+	cout << "Р’РІРµРґРёС‚Рµ РўРёРї РІРѕРґРѕРµРјР°: ";	
 	cin.getline(buff, 250);
 	_tip = strlen(buff);
 	temp[*countreservoir].Tip = new char[_tip + 1];
 	strcpy(temp[*countreservoir].Tip, buff);	
 
-	cout << "Введите Дополнительную информацию: ";	
+	cout << "Р’РІРµРґРёС‚Рµ Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ: ";	
 	cin.getline(buff, 250);
 	_info = strlen(buff);
 	temp[*countreservoir].Dop_Info = new char[_info + 1];
@@ -209,8 +209,8 @@ void Reservoir::AddReservoir(Reservoir*& vodoem, int* countreservoir, int *_numb
 
 	vodoem = temp;
 
-	cout << "Изменения внесены...\n";
-	cout << "Нажми любую кнопку для возврата к меню.";
+	cout << "РР·РјРµРЅРµРЅРёСЏ РІРЅРµСЃРµРЅС‹...\n";
+	cout << "РќР°Р¶РјРё Р»СЋР±СѓСЋ РєРЅРѕРїРєСѓ РґР»СЏ РІРѕР·РІСЂР°С‚Р° Рє РјРµРЅСЋ.";
 }
 
 long double Reservoir::SearchVolume(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int* check)
@@ -294,7 +294,7 @@ void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int con
 				gotoxy(0, 13);
 				cout << "+-------+---------------------------+-----------------+-------------+\n";
 				gotoxy(0, 14);
-				cout << "|Код    | Наименование              | Тип             | Площадь, км |\n";
+				cout << "|РљРѕРґ    | РќР°РёРјРµРЅРѕРІР°РЅРёРµ              | РўРёРї             | РџР»РѕС‰Р°РґСЊ, РєРј |\n";
 				gotoxy(0, 15);
 				cout << "+-------+---------------------------+-----------------+-------------+\n";
 			}
@@ -311,8 +311,8 @@ void Reservoir::SearchAreaTip(Reservoir* vodoem, char const* charsearch, int con
 
 	if (countsearch < 1)
 	{
-		cout << "Водоемов по запросу не найдено" << endl;
-		cout << "Нажми любую кнопку для возврата к меню.";
+		cout << "Р’РѕРґРѕРµРјРѕРІ РїРѕ Р·Р°РїСЂРѕСЃСѓ РЅРµ РЅР°Р№РґРµРЅРѕ" << endl;
+		cout << "РќР°Р¶РјРё Р»СЋР±СѓСЋ РєРЅРѕРїРєСѓ РґР»СЏ РІРѕР·РІСЂР°С‚Р° Рє РјРµРЅСЋ.";
 	}
 }
 
@@ -460,7 +460,7 @@ void Reservoir::Setvolume(long double _volume)
 Country::Country()
 {
 	cid = 0;
-	Country_Name = new char[10]{ "Без имени" };
+	Country_Name = new char[10]{ "Р‘РµР· РёРјРµРЅРё" };
 }
 
 Country::Country(int _cid, const char* _name)

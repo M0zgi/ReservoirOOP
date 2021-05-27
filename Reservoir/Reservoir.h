@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <Windows.h>
@@ -29,41 +29,41 @@ public:
 	//Reservoir(Reservoir*& vodoem, int* countreservoir, int* _number);
 	Reservoir(int _id, int _code, const char* _name, double _width, double _length, double _depth, const char* _tip, const char* _info);
 
-	//конструктор копирования
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	Reservoir(const Reservoir& obj);
 
 	void DeleteReservoir(Reservoir*& vodoem, int* countreservoir, int* _number);
 
 	void AddReservoir(Reservoir*& vodoem, int* countreservoir, int* _number);
 
-	//ручной расчет площади по кадастровому номеру воды S = a * b, где S — площадь; a - длина и b - ширина.
-	//используется вручную, после изменения данных по единичной позиции
+	//СЂСѓС‡РЅРѕР№ СЂР°СЃС‡РµС‚ РїР»РѕС‰Р°РґРё РїРѕ РєР°РґР°СЃС‚СЂРѕРІРѕРјСѓ РЅРѕРјРµСЂСѓ РІРѕРґС‹ S = a * b, РіРґРµ S вЂ” РїР»РѕС‰Р°РґСЊ; a - РґР»РёРЅР° Рё b - С€РёСЂРёРЅР°.
+	//РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІСЂСѓС‡РЅСѓСЋ, РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РїРѕ РµРґРёРЅРёС‡РЅРѕР№ РїРѕР·РёС†РёРё
 	long double SearchArea(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int* check);
 
-	//автоматический расчет площади (если база большая может занять время)
+	//Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ СЂР°СЃС‡РµС‚ РїР»РѕС‰Р°РґРё (РµСЃР»Рё Р±Р°Р·Р° Р±РѕР»СЊС€Р°СЏ РјРѕР¶РµС‚ Р·Р°РЅСЏС‚СЊ РІСЂРµРјСЏ)
 	void AutoSearchArea(Reservoir* vodoem, const int countreservoir);
 
-	//поиск для сравнения площади водоемов одного типа (поиск учитывает регистр)
-	//если ввести одну букву "р" то в результат попадут все типы, где есть эта буква
+	//РїРѕРёСЃРє РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ РїР»РѕС‰Р°РґРё РІРѕРґРѕРµРјРѕРІ РѕРґРЅРѕРіРѕ С‚РёРїР° (РїРѕРёСЃРє СѓС‡РёС‚С‹РІР°РµС‚ СЂРµРіРёСЃС‚СЂ)
+	//РµСЃР»Рё РІРІРµСЃС‚Рё РѕРґРЅСѓ Р±СѓРєРІСѓ "СЂ" С‚Рѕ РІ СЂРµР·СѓР»СЊС‚Р°С‚ РїРѕРїР°РґСѓС‚ РІСЃРµ С‚РёРїС‹, РіРґРµ РµСЃС‚СЊ СЌС‚Р° Р±СѓРєРІР°
 	void SearchAreaTip(Reservoir* vodoem, char const* charsearch, int const countreservoir);
 
-	//расчет объема воды (Q = width * length * depth, где Q — объем; width * length * depth — ширина, длина и глубина)
+	//СЂР°СЃС‡РµС‚ РѕР±СЉРµРјР° РІРѕРґС‹ (Q = width * length * depth, РіРґРµ Q вЂ” РѕР±СЉРµРј; width * length * depth вЂ” С€РёСЂРёРЅР°, РґР»РёРЅР° Рё РіР»СѓР±РёРЅР°)
 	long double SearchVolume(Reservoir* vodoem, const int countreservoir, int _code, int* _idarray, int* check);
 	
 	bool CheckTip(Reservoir* vodoem, int const countreservoir, int _code1, int _code2, int* _idarray1, int* _idarray2);
 	
-	//вывод типа водоема
+	//РІС‹РІРѕРґ С‚РёРїР° РІРѕРґРѕРµРјР°
 	void Show_Tip();
 
-	//вывод водоемов на экран
+	//РІС‹РІРѕРґ РІРѕРґРѕРµРјРѕРІ РЅР° СЌРєСЂР°РЅ
 	void Show_Reservoir();
 
-	//вывод одного водоема на экран
+	//РІС‹РІРѕРґ РѕРґРЅРѕРіРѕ РІРѕРґРѕРµРјР° РЅР° СЌРєСЂР°РЅ
 	void Show_One_Reservoir();
 
 	~ Reservoir();
 
-	//геттеры
+	//РіРµС‚С‚РµСЂС‹
 
 	int Getid();
 	int Getcode();
@@ -76,7 +76,7 @@ public:
 	long double Getarea();
 	long double Getvolume();
 
-	//сеттеры
+	//СЃРµС‚С‚РµСЂС‹
 	void Setid(int _id);
 	void Setcode(int _code);
 	void SetReservoir_Name(char* _Reservoir_Name);
@@ -90,9 +90,9 @@ public:
 
 };
 
-//класс Страна создан для маштабирования проекта до уровня водоемов разных стран
-//предполагается копирвоание названий водоемов в переменную класса Reservoir *Name
-//с последующим сопоставлением страна-водоемы
+//РєР»Р°СЃСЃ РЎС‚СЂР°РЅР° СЃРѕР·РґР°РЅ РґР»СЏ РјР°С€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ РїСЂРѕРµРєС‚Р° РґРѕ СѓСЂРѕРІРЅСЏ РІРѕРґРѕРµРјРѕРІ СЂР°Р·РЅС‹С… СЃС‚СЂР°РЅ
+//РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ РєРѕРїРёСЂРІРѕР°РЅРёРµ РЅР°Р·РІР°РЅРёР№ РІРѕРґРѕРµРјРѕРІ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ РєР»Р°СЃСЃР° Reservoir *Name
+//СЃ РїРѕСЃР»РµРґСѓСЋС‰РёРј СЃРѕРїРѕСЃС‚Р°РІР»РµРЅРёРµРј СЃС‚СЂР°РЅР°-РІРѕРґРѕРµРјС‹
 class Country
 {
 private:
