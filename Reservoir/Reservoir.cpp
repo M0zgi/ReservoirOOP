@@ -365,9 +365,9 @@ int Reservoir::Getcode()
 	return code;
 }
 
-char Reservoir::GetReservoir_Name()
+char *Reservoir::GetReservoir_Name()
 {
-	return *Reservoir_Name;
+	return Reservoir_Name;
 }
 
 double Reservoir::Getwidth()
@@ -385,14 +385,14 @@ double Reservoir::Getdepth()
 	return depth;
 }
 
-char Reservoir::GetDop_Info()
+char * Reservoir::GetDop_Info()
 {
-	return *Dop_Info;
+	return Dop_Info;
 }
 
-char Reservoir::GetTip()
+char *Reservoir::GetTip()
 {
-	return *Tip;
+	return Tip;
 }
 
 long double Reservoir::Getarea()

@@ -67,12 +67,12 @@ public:
 
 	int Getid();
 	int Getcode();
-	char GetReservoir_Name();
+	char* GetReservoir_Name();
 	double Getwidth();
 	double Getlength();
 	double Getdepth();
-	char GetDop_Info();
-	char GetTip();
+	char* GetDop_Info();
+	char* GetTip();
 	long double Getarea();
 	long double Getvolume();
 
