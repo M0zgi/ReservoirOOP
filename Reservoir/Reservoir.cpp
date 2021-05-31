@@ -417,7 +417,13 @@ void Reservoir::Setcode(int _code)
 
 void Reservoir::SetReservoir_Name(char* _Reservoir_Name)
 {
-	Reservoir_Name = _Reservoir_Name;
+	if (Reservoir_Name)
+	{
+		delete[] Reservoir_Name;
+	}
+
+	Reservoir_Name = new char[strlen(_Reservoir_Name) + 1];
+	strcpy(Reservoir_Name, _Reservoir_Name);
 }
 
 void Reservoir::Setwidth(double _width)
@@ -437,12 +443,24 @@ void Reservoir::Setdepth(double _depth)
 
 void Reservoir::SetDop_Info(char* _Dop_Info)
 {
-	Dop_Info = _Dop_Info;
+	if (Dop_Info)
+	{
+		delete[] Dop_Info;
+	}
+
+	Dop_Info = new char[strlen(_Dop_Info) + 1];
+	strcpy(Dop_Info, _Dop_Info);
 }
 
 void Reservoir::SetTip(char* _Tip)
 {
-	Tip = _Tip;
+	if (Tip)
+	{
+		delete[] Tip;
+	}
+
+	Tip = new char[strlen(_Tip) + 1];
+	strcpy(Tip, _Tip);
 }
 
 void Reservoir::Setarea(long double _area)
